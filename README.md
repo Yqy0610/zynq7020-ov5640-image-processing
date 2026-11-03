@@ -68,8 +68,21 @@ OV5640 → ov5640_capture_data(RGB565→RGB888)
        → v_axi4s_vid_out → v_tc → DVI/HDMI
 ```
 
-## 使用说明
+## 使用说明（重要：比赛方/下载者必读）
+
+### 打开 Vivado 工程
 1. 用 Vivado 2020.2 打开 `vivado/ov5640_hdmi.xpr`；
-2. 若 `.gen/.runs` 被忽略，需 `Generate Output Products` 重新生成；
-3. `Export Hardware`（勾选 Include bitstream）导出 XSA；
-4. 在 Vitis 中导入 XSA、编译 `vitis/my_app` 的 C 代码、烧录运行。
+2. 自定义 IP 仓库已按相对路径配置（`$PPRDIR/ip_repo`），工程会自动识别 `ov5640_capture_data`、`DVI_TX` 两个自定义 IP；
+3. 首次打开如提示生成输出产物，点击 `Generate Output Products`；
+4. 综合实现后 `File → Export → Export Hardware`（勾选 Include bitstream）可重新导出 XSA。
+
+### 打开 Vitis 工程
+1. 仓库已附带平台硬件描述文件：`vitis/my_platform/hw/system_wrapper.xsa`；
+2. 应用 C 代码位于 `vitis/my_app/src/`（main.c、vdma_api、ov5640、display_ctrl_hdmi、emio_sccb_cfg）；
+3. 在 Vitis 2020.2 中：新建工作区 → 新建平台工程（导入上述 XSA）→ `File → Import` 导入 `my_app`、`my_app_system` 工程 → 编译并烧录。
+
+### 硬件要求
+- 正点原子领航者 ZYNQ-7020 开发板（xc7z020）
+- OV5640 摄像头模组
+- HDMI 显示器
+- 按键 PL_KEY0（L14）用于切换原图/灰度/二值化模式

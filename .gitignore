@@ -53,3 +53,6 @@ vivado_*.zip
 # ============ 系统 ============
 Thumbs.db
 .DS_Store
+
+# 允许提交平台硬件描述文件（便于比赛方重建平台）
+!vitis/my_platform/hw/system_wrapper.xsa
