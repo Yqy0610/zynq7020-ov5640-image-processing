@@ -1,0 +1,55 @@
+# ============ Vivado 生成文件（不提交） ============
+*.jou
+*.log
+*.str
+*.backup.jou
+*.backup.log
+
+# Vivado 工程生成目录（目录名带工程名前缀，如 ov5640_hdmi.gen）
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+.Xil/
+.vivado/
+NA/
+
+# 综合/实现产物（可重新生成）
+*.bit
+*.bin
+*.dcp
+*.rpt
+*.xsa
+*.hwh
+*.hwdef
+*.mcs
+
+# ============ Vitis / Eclipse 工作区（不提交） ============
+vitis/.metadata/
+vitis/.analytics/
+vitis/RemoteSystemsTempFiles/
+vitis/IDE.log
+vitis/*.xsa
+vitis/**/Debug/
+vitis/**/*.elf
+vitis/**/*.o
+vitis/**/*.mk
+vitis/**/makefile
+
+# ============ 临时文件 ============
+*.bak
+*.tmp
+*.swp
+~*
+read_pins*.py
+read_doc.py
+verify_doc.py
+edit_docx.py
+
+vivado_*.zip
+
+# ============ 系统 ============
+Thumbs.db
+.DS_Store
