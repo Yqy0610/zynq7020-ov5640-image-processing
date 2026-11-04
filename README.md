@@ -33,18 +33,17 @@
 ## 目录结构
 ```
 repo/
-├── vivado/                      # Vivado 工程
-│   ├── ov5640_hdmi.xpr          # 工程文件
-│   ├── ov5640_hdmi.srcs/        # 源文件
-│   │   ├── sources_1/
-│   │   │   ├── new/             # 自定义 Verilog
-│   │   │   │   ├── image_process_comb.v       # 像素核心（原图/灰度/二值化）
-│   │   │   │   ├── image_process.v           # 按键消抖 + 模式切换
-│   │   │   │   └── image_process_video_top.v # 原生视频插入壳
-│   │   │   └── bd/system/system.bd  # Block Design
-│   │   └── constrs_1/new/ov5640_lcd.xdc      # 引脚约束
-│   ├── ip_repo/                 # 自定义 IP（ov5640_capture_data、DVI_TX）
-│   └── bd_*.tcl                 # BD 设置脚本
+├── ov5640_hdmi.xpr              # Vivado 工程文件
+├── ov5640_hdmi.srcs/            # 源文件
+│   ├── sources_1/
+│   │   ├── new/                 # 自定义 Verilog
+│   │   │   ├── image_process_comb.v       # 像素核心（原图/灰度/二值化）
+│   │   │   ├── image_process.v           # 按键消抖 + 模式切换
+│   │   │   └── image_process_video_top.v # 原生视频插入壳
+│   │   └── bd/system/system.bd  # Block Design
+│   └── constrs_1/new/ov5640_lcd.xdc      # 引脚约束
+├── ip_repo/                     # 自定义 IP（ov5640_capture_data、DVI_TX）
+├── bd_*.tcl                     # BD 设置脚本
 ├── vitis/                       # Vitis 工程
 │   ├── my_app/                  # 应用工程（PS 端 C 代码）
 │   │   └── src/
@@ -53,7 +52,7 @@ repo/
 │   │       ├── ov5640/          # 摄像头初始化
 │   │       ├── display_ctrl_hdmi/  # HDMI 显示时序
 │   │       └── emio_sccb_cfg/   # SCCB 配置
-│   ├── my_platform/             # 硬件平台（platform.tcl / platform.spr）
+│   ├── my_platform/             # 硬件平台（platform.tcl / platform.spr / XSA）
 │   └── my_app_system/           # 系统工程
 ├── README.md
 └── .gitignore
@@ -68,13 +67,13 @@ OV5640 → ov5640_capture_data(RGB565→RGB888)
        → v_axi4s_vid_out → v_tc → DVI/HDMI
 ```
 
-## 使用说明（重要：比赛方/下载者必读）
+## 使用说明（比赛方/下载者必读）
 
 ### 打开 Vivado 工程
-1. 用 Vivado 2020.2 打开 `vivado/ov5640_hdmi.xpr`；
+1. 用 Vivado 2020.2 打开 `ov5640_hdmi.xpr`；
 2. 自定义 IP 仓库已按相对路径配置（`$PPRDIR/ip_repo`），工程会自动识别 `ov5640_capture_data`、`DVI_TX` 两个自定义 IP；
 3. 首次打开如提示生成输出产物，点击 `Generate Output Products`；
-4. 综合实现后 `File → Export → Export Hardware`（勾选 Include bitstream）可重新导出 XSA。
+4. 综合实现后 `File → Export → Export Hardware`（勾选 Include bitstream）可导出 XSA。
 
 ### 打开 Vitis 工程
 1. 仓库已附带平台硬件描述文件：`vitis/my_platform/hw/system_wrapper.xsa`；
